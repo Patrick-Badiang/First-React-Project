@@ -5,6 +5,7 @@
 
 //Test
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 function App() {
   const expenseList = [
@@ -12,8 +13,14 @@ function App() {
     { title: 'Home Insurance', amount: "174", date: new Date(2021, 4, 15) },
     { title: 'Job Insurance', amount: "234", date: new Date(2021, 1, 5) },
   ]
+
+  const addExpenseHandler = (expense) =>{
+    console.log('In App.js');
+    console.log(expense);
+  }
   return (
     <div>
+      <NewExpense onAddExpense = {addExpenseHandler}/>
       <Expenses item = {expenseList}/>
 
     </div>
