@@ -3,25 +3,31 @@
 //Holds other components
 //Within each of those components holds mini tasks
 
-//Test
+import React, {useState} from 'react';
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
+const dummy_expense = [
+  { id: "e1", title: 'Car Insurance', amount: "814", date: new Date(2021, 2, 28) },
+  { id: "e2", title: 'Home Insurance', amount: "174", date: new Date(2021, 4, 15) },
+  { id: "e3", title: 'Job Insurance', amount: "234", date: new Date(2021, 1, 5) },
+]; 
 function App() {
-  const expenseList = [
-    { title: 'Car Insurance', amount: "814", date: new Date(2021, 2, 28) },
-    { title: 'Home Insurance', amount: "174", date: new Date(2021, 4, 15) },
-    { title: 'Job Insurance', amount: "234", date: new Date(2021, 1, 5) },
-  ]
+  const [expenses, setExpenses] = useState(dummy_expense);
 
   const addExpenseHandler = (expense) =>{
-    console.log('In App.js');
-    console.log(expense);
+    setExpenses(prevExpenses => {
+      return [expense, ...prevExpenses];
+    });
   }
+
   return (
     <div>
-      <NewExpense onAddExpense = {addExpenseHandler}/>
-      <Expenses item = {expenseList}/>
+      <NewExpense onAddExpense = {addExpenseHandler} 
+      //Allows for the children to reference this and interract with this component (the parent)
+      />
+      
+      <Expenses item = {expenses}/>
 
     </div>
   );

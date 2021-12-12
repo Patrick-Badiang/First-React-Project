@@ -11,7 +11,7 @@ const NewExpense = (props) => {
             ...enteredExpenseData,
             id: Math.random().toString()
         };
-        props.onAddExpense(expenseData);
+        props.onAddExpense(expenseData); //interracting with the parent through the help of "props"
     }
     return <div className = "new-expense">
         <ExpenseForm onSaveExpenseData = {saveExpenseDataHandler} /> 

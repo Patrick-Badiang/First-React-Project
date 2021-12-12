@@ -5,7 +5,7 @@ import ExpenseDate from './ExpenseDate';
 import Card from '../UI/Card';
 
 //Component = function
-function ExpenseItem(props) {
+const ExpenseItem = (props) =>{
 
     const [title, setTitle] = useState(props.title); //Hooks must be in react component functions
     //useState returns an array where the 1st element is the value and the second is the update value
@@ -23,7 +23,7 @@ function ExpenseItem(props) {
                 <ExpenseDate date = {props.date}/>
                     <div className = "expense-item__description">
                         <h2>{title}</h2>
-                        <div className = "expense-item__price">{props.amount}</div>
+                        <div className = "expense-item__price">${props.amount}</div>
                     </div>
                     <button onClick = {clickHandler}>Change Title</button>
             </Card>
