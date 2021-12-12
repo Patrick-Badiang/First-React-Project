@@ -52,6 +52,10 @@ const ExpenseForm = (props) => {
         setEnteredDate('');
     };
 
+    const cancelEditingHandler = () => {
+        props.onCancelForm();
+    }
+
     return (//Two way binding is very common for forms since it allows for input
             //but at the same time is able to reset those values
     <form onSubmit ={submitHandler}> 
@@ -85,7 +89,8 @@ const ExpenseForm = (props) => {
             </div>
         </div>
         <div className =  'new-expense__actions'>
-            <button type ="submit">AddExpense</button>    
+            <button type ="submit">AddExpense</button>
+            <button type = "button" onClick = {cancelEditingHandler}>Cancel</button>    
         </div>
     </form>
     )
