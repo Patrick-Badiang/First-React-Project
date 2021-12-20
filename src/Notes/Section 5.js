@@ -107,4 +107,77 @@ Inside the list component it will have a className "expenses-list" *part of the 
 and also will return the expenses list
 and now the if statement will actually check if the length = 0 and return the empty list text
 this also allows us to remove the variable from before
+
+Episode 7 (69)
+
+We need to add a chart to the site.
+The graphical representation
+
+To keep things organized add a new chart folder
+Since in the chart it has multiple bars we can conclude that we should make a component
+for those bars
+
+Css files are provided for the chart and the char bars
+
+Chart comp will receive a prop and we want to render all the chart bars
+how would we render it all?
+import the chartBar class and return the chartBar class
+
+In the Char class map the dataPoints as a ChartBar item with a prop value that holds the dataPointValue
+We also want a prop with the max value which would be temporarily null atm
+Another prop would be the props label "January"
+
+Episode 8 (70)
+
+We have a bunch of divs in teh ChartBar class that will be responsible for rendering the chart correctly
+In order to output the label, dynamically output the label but we also need to set the chart bar fill
+
+The important part of the chart bar is the HEIGHT which depends on the data that we have aka
+it will dynamically look at the prop value
+ Solution:
+ We need a variable that will initially be "0%" as a text because it will be assigned as a css file
+ Then check if we have a prop max value > 0, we could have 0 later if we filter for a month that has no expenses
+ If it is met then we set the variable to the (prop value / prop maxValue) * 100 + "%"
+  ^*rounded to the closest integer*^
+
+ Then set the variable as the css style height 
+To acheive this:
+We have to set the style meaning we need to add a prop called "style" which needs an object dynamically
+in order to give an object dynamically we need to put style = {{object}}
+
+So set the height to the variable height
+
+Episode 9 (71)
+
+Now we need to use the chart and pass in the dataPoints so we need a new component in the ExpensesFolder
+Called ExpensesChart
+in here the end goal is to return "Chart" so we need to import the file
+
+To define the dataPoints we need to have a variable called chartDataPoints and initialize it as an array
+The array will hold objects
+The reason why theya re objects is because in the Chart js file we map out the array and expect an object
+like Label, value
+So the objects should have a lebel and value
+(we should have 12 elements one for each month)
+
+Have a "for of" loop that loops at all expenses in the expenses list
+and set a const that stores the month "expense.date.getMont();"
+Check the array of the chartDataPoints with the new const and set the value to expense.amount
+
+then return the datapoints as a prop to the Chart class with the dynamic value of chartDataPoints
+
+Have a const variable that will represent the totalMaximum with math.ax();
+and pass in another variable that has the datapoint values storing "props.dataPoints.map(dataPoint => dataPoint.value)"
+This transform the dataPoint object to just the number that is stored.
+
+Now we can pass in the dataPointValues array into the Math.max paramater with the 
+spread operatore "...dataPointValues"
+
+Finally pass in the maximum variable into the prop of maxValue
+
+Now we just need to make sure that we use the expensesChart component
+To do that we do it in the Expenses js file, import  expensesChart
+and simply add it inbetween the filter and the List and pass in the expenses prop that stores
+the filteredExpenses
+
 */
